@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.virtualpairprogrammers.employeemanagement.dataacess.EmployeeDataAccess;
+import com.virtualpairprogrammers.employeemanagement.dataacess.ProductionDao;
+import com.virtualpairprogrammers.employeemanagement.dataacess.TestingDao;
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 //Stateless annotations tells to server that 
@@ -14,6 +16,8 @@ import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 public class EmployeeManagementImpl implements EmployeeManagementService {
 
 	@Inject
+	//@ProductionDao
+	@TestingDao
 	private EmployeeDataAccess dao;
 	
 	//we can instantiate dao using below constructor but this

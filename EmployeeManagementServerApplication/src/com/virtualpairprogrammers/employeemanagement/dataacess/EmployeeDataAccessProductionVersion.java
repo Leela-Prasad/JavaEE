@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
 
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 @Stateless
-//This is the Default Implementation considered for Injection unless
-//something is declared in src/META-INF/beans.xml file
-@Default
+@ProductionDao
 public class EmployeeDataAccessProductionVersion implements EmployeeDataAccess {
 
 	@Override
