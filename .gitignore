@@ -10,3 +10,11 @@ EmployeeManagementClientApplication/bin
 Servers
 RemoteSystemsTempFiles
 .DS_Store
+ShoppingCartServer/.classpath
+ShoppingCartServer/.project
+ShoppingCartServer/.settings
+ShoppingCartServer/bin
+ShoppingCartClient/.classpath
+ShoppingCartClient/.project
+ShoppingCartClient/bin
+ShoppingCartClient/.settings
