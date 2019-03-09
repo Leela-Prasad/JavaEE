@@ -69,7 +69,12 @@
 	<target name="serverjar" depends="compile" 
 	                         description="Build Server Jar files.">
 	   
-	   <jar destfile="${server-jarfile}" basedir="${bin}" />
+	   <jar destfile="${server-jarfile}" basedir="${bin}">
+	   		<metainf dir="${src}/META-INF">
+	   			<include name="beans.xml" />
+	   		</metainf>	
+	   </jar>
+	   	
 	   <echo message="Built the server jar file."/>   		  
 	</target>
 	

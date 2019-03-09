@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
 
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 @Stateless
-public class EmployeeDataAccessImpl implements EmployeeDataAccess {
+//This Implementation will be eligible for Injection only when this class is 
+//declared in src/META-INF/beans.xml file
+@Alternative
+public class EmployeeDataAccessTestingVersion implements EmployeeDataAccess {
 
 	@Override
 	public void insert(Employee newEmployee) {
