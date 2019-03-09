@@ -1,10 +1,11 @@
 package com.virtualpairprogrammers.employeemanagement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
+import com.virtualpairprogrammers.employeemanagement.dataacess.EmployeeDataAccess;
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 //Stateless annotations tells to server that 
@@ -12,6 +13,18 @@ import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 @Stateless
 public class EmployeeManagementImpl implements EmployeeManagementService {
 
+	@Inject
+	private EmployeeDataAccess dao;
+	
+	//we can instantiate dao using below constructor but this
+	//class needs jndi service to be available for unit testing
+	//we can also instantiate any ejb using @Inject annotation. and this 
+	//will make sure all our dependencies are available at application startup.
+	/*public EmployeeManagementImpl() throws NamingException {
+		Context jndi = new InitialContext();
+		jndi.lookup("friendlyName");
+	}*/
+	
 	@Override
 	public void registerEmployee(Employee employee) {
 		
@@ -19,12 +32,7 @@ public class EmployeeManagementImpl implements EmployeeManagementService {
 
 	@Override
 	public List<Employee> getAllEmployees() {
-		List<Employee> employees = new ArrayList<>();
-		Employee e1 = new Employee("Leela", "Jagu", "Developer", 1200);
-		Employee e2 = new Employee("Prasad", "Jagu", "Tester", 1100);
-		employees.add(e1);
-		employees.add(e2);
-		return employees;
+		return dao.findAll();
 	}
 
 	@Override
