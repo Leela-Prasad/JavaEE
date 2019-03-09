@@ -8,13 +8,11 @@ import javax.ejb.Stateless;
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 @Stateless
-public class EmployeeDataAccessImpl implements EmployeeDataAccess {
+public class EmployeeDataAccessImpl {
 
-	@Override
 	public void insert(Employee newEmployee) {
 	}
 
-	@Override
 	public List<Employee> findAll() {
 		List<Employee> employees = new ArrayList<>();
 		Employee e1 = new Employee("Leela", "Jagu", "Developer", 1200);
@@ -24,7 +22,6 @@ public class EmployeeDataAccessImpl implements EmployeeDataAccess {
 		return employees;
 	}
 
-	@Override
 	public List<Employee> findBySurname(String surname) {
 		return null;
 	}

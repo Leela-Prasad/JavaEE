@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import com.virtualpairprogrammers.employeemanagement.dataacess.EmployeeDataAccess;
+import com.virtualpairprogrammers.employeemanagement.dataacess.EmployeeDataAccessImpl;
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 //Stateless annotations tells to server that 
@@ -13,8 +13,11 @@ import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 @Stateless
 public class EmployeeManagementImpl implements EmployeeManagementService {
 
+	//From Java EE6 if you are invoking a local EJB then the interface for that
+	//EJB is optional, this will be useful when you are sure that you have only one
+	//implementation.
 	@Inject
-	private EmployeeDataAccess dao;
+	private EmployeeDataAccessImpl dao;
 	
 	//we can instantiate dao using below constructor but this
 	//class needs jndi service to be available for unit testing
