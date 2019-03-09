@@ -1,0 +1,12 @@
+/.metadata/
+/.recommenders/
+.sonarlint
+EmployeeManagementServerApplication/.classpath
+EmployeeManagementServerApplication/.project
+EmployeeManagementServerApplication/.settings
+EmployeeManagementServerApplication/bin
+EmployeeManagementClientApplication/.settings
+EmployeeManagementClientApplication/bin
+Servers
+RemoteSystemsTempFiles
+.DS_Store
