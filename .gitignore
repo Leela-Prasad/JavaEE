@@ -7,6 +7,10 @@ EmployeeManagementServerApplication/.settings
 EmployeeManagementServerApplication/bin
 EmployeeManagementClientApplication/.settings
 EmployeeManagementClientApplication/bin
+EmployeeManagementJPA/.classpath
+EmployeeManagementJPA/.project
+EmployeeManagementJPA/bin
+EmployeeManagementJPA/.settings
 Servers
 RemoteSystemsTempFiles
 .DS_Store
