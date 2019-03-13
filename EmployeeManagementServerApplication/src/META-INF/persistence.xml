@@ -1,0 +1,16 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+	
+	<!-- JTA tells that tramsactions are handled by Application Server -->
+	<persistence-unit name="employeeDB22" transaction-type="JTA">
+		<!-- All Database details like driver, username, password are registerd on server using a jndi name
+		     so here we have to refer that jndi name. -->
+		<jta-data-source>java:/EmployeeDB</jta-data-source>
+		<properties>
+			 <property name="hibernate.hbm2ddl.auto" value="update"/>
+			 <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" /> -->
+		</properties>
+	</persistence-unit>
+	
+</persistence>	

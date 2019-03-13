@@ -16,8 +16,8 @@ import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 public class EmployeeManagementImpl implements EmployeeManagementService {
 
 	@Inject
-	//@ProductionDao
-	@TestingDao
+	@ProductionDao
+	//@TestingDao
 	private EmployeeDataAccess dao;
 	
 	//we can instantiate dao using below constructor but this
@@ -31,7 +31,7 @@ public class EmployeeManagementImpl implements EmployeeManagementService {
 	
 	@Override
 	public void registerEmployee(Employee employee) {
-		
+		dao.insert(employee);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class EmployeeManagementImpl implements EmployeeManagementService {
 
 	@Override
 	public List<Employee> searchBySurname(String surname) {
-		return null;
+		return dao.findBySurname(surname);
 	}
 
 }

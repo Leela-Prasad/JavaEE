@@ -24,6 +24,7 @@ public class Main {
 		
 		Context jndi = new InitialContext(jndiProperties);
 		EmployeeManagementService service = (EmployeeManagementService) jndi.lookup("EmployeeManagementServerApplication/EmployeeManagementImpl!com.virtualpairprogrammers.employeemanagement.EmployeeManagementService");
+		System.out.println("Service :::" + service);
 		System.out.println(service.getAllEmployees());
 		
 	}

@@ -1,9 +1,11 @@
 package com.virtualpairprogrammers.employeemanagement.dataacess;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
@@ -11,23 +13,28 @@ import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 @ProductionDao
 public class EmployeeDataAccessProductionVersion implements EmployeeDataAccess {
 
+	//This annotation tells server to inject Entity Manager 
+	//whenever any method is called because Entity Manager should be created
+	//for every transaction.
+	@PersistenceContext
+	private EntityManager em;
+	
 	@Override
 	public void insert(Employee newEmployee) {
+		em.persist(newEmployee);
 	}
 
 	@Override
 	public List<Employee> findAll() {
-		List<Employee> employees = new ArrayList<>();
-		Employee e1 = new Employee("Leela Pr", "Jagu Pr", "Developer", 1200);
-		Employee e2 = new Employee("Prasad Pr", "Jagu Pr", "Tester", 1100);
-		employees.add(e1);
-		employees.add(e2);
-		return employees;
+	    Query q = em.createQuery("select employee from Employee employee");
+	    return q.getResultList();
 	}
 
 	@Override
 	public List<Employee> findBySurname(String surname) {
-		return null;
+		Query q = em.createQuery("select employee from Employee employee where employee.surName=:surname");
+		q.setParameter("surname", surname);
+		return q.getResultList();
 	}
 
 }
