@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import com.virtualpairprogrammers.employeemanagement.dataacess.EmployeeDataAccess;
 import com.virtualpairprogrammers.employeemanagement.dataacess.ProductionDao;
-import com.virtualpairprogrammers.employeemanagement.dataacess.TestingDao;
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 //Stateless annotations tells to server that 
@@ -32,6 +31,11 @@ public class EmployeeManagementImpl implements EmployeeManagementService {
 	@Override
 	public void registerEmployee(Employee employee) {
 		dao.insert(employee);
+		
+		//Throwing an UNCHECKED EXCEPTION will make the transaction to be
+		//rolled back automatically, so employee will not be inserted
+		throw new RuntimeException();
+		
 	}
 
 	@Override

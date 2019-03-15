@@ -7,6 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import com.virtualpairprogrammers.employeemanagement.EmployeeManagementService;
+import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 public class Main {
 
@@ -24,7 +25,9 @@ public class Main {
 		
 		Context jndi = new InitialContext(jndiProperties);
 		EmployeeManagementService service = (EmployeeManagementService) jndi.lookup("EmployeeManagementServerApplication/EmployeeManagementImpl!com.virtualpairprogrammers.employeemanagement.EmployeeManagementService");
-		System.out.println("Service :::" + service);
+		Employee employee = new Employee("user4", "sur4", "Test", 1100);
+		service.registerEmployee(employee);
+		
 		System.out.println(service.getAllEmployees());
 		
 	}
