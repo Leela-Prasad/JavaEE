@@ -19,6 +19,9 @@ public class EmployeeManagementImpl implements EmployeeManagementService {
 	//@TestingDao
 	private EmployeeDataAccess dao;
 	
+	@Inject
+	private ExternalPayrollSystem payrollService;
+	
 	//we can instantiate dao using below constructor but this
 	//class needs jndi service to be available for unit testing
 	//we can also instantiate any ejb using @Inject annotation. and this 
@@ -29,13 +32,13 @@ public class EmployeeManagementImpl implements EmployeeManagementService {
 	}*/
 	
 	@Override
-	public void registerEmployee(Employee employee) {
+	public void registerEmployee(Employee employee) throws ServiceUnavialableException {
 		dao.insert(employee);
 		
-		//Throwing an UNCHECKED EXCEPTION will make the transaction to be
-		//rolled back automatically, so employee will not be inserted
-		throw new RuntimeException();
-		
+		//As payroll Service is throwing a CHECKED Exception and if something
+		//happens wrong also it will not rollback the transaction as it is a 
+		//CHECKED EXCEPTION i.e., still employee will be inserted.
+		payrollService.enrollEmployee(employee);
 	}
 
 	@Override

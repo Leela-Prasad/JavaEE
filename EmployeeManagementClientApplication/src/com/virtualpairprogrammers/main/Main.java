@@ -7,6 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import com.virtualpairprogrammers.employeemanagement.EmployeeManagementService;
+import com.virtualpairprogrammers.employeemanagement.ServiceUnavialableException;
 import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 
 public class Main {
@@ -26,7 +27,11 @@ public class Main {
 		Context jndi = new InitialContext(jndiProperties);
 		EmployeeManagementService service = (EmployeeManagementService) jndi.lookup("EmployeeManagementServerApplication/EmployeeManagementImpl!com.virtualpairprogrammers.employeemanagement.EmployeeManagementService");
 		Employee employee = new Employee("user4", "sur4", "Test", 1100);
-		service.registerEmployee(employee);
+		try {
+			service.registerEmployee(employee);
+		} catch (ServiceUnavialableException e) {
+			System.out.println("Something happened Wrong");
+		}
 		
 		System.out.println(service.getAllEmployees());
 		

@@ -12,7 +12,7 @@ import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 @Remote
 public interface EmployeeManagementService {
 
-	public void registerEmployee(Employee employee);
+	public void registerEmployee(Employee employee) throws ServiceUnavialableException;
 	
 	public List<Employee> getAllEmployees();
 	
