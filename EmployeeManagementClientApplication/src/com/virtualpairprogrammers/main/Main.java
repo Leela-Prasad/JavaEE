@@ -26,7 +26,7 @@ public class Main {
 		
 		Context jndi = new InitialContext(jndiProperties);
 		EmployeeManagementService service = (EmployeeManagementService) jndi.lookup("EmployeeManagementServerApplication/EmployeeManagementImpl!com.virtualpairprogrammers.employeemanagement.EmployeeManagementService");
-		Employee employee = new Employee("user9", "sur9", "Test", 1100);
+		Employee employee = new Employee("user10", "sur10", "Test", 1100);
 		try {
 			service.registerEmployee(employee);
 		} catch (ServiceUnavialableException e) {
