@@ -2,6 +2,8 @@ package com.virtualpairprogrammers.employeemanagement;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -22,6 +24,9 @@ public class EmployeeManagementImpl implements EmployeeManagementService {
 	@Inject
 	private ExternalPayrollSystem payrollService;
 	
+	@Resource
+	private SessionContext wildfly;
+	
 	//we can instantiate dao using below constructor but this
 	//class needs jndi service to be available for unit testing
 	//we can also instantiate any ejb using @Inject annotation. and this 
@@ -35,10 +40,15 @@ public class EmployeeManagementImpl implements EmployeeManagementService {
 	public void registerEmployee(Employee employee) throws ServiceUnavialableException {
 		dao.insert(employee);
 		
-		//As payroll Service is throwing a CHECKED Exception and if something
-		//happens wrong also it will not rollback the transaction as it is a 
-		//CHECKED EXCEPTION i.e., still employee will be inserted.
-		payrollService.enrollEmployee(employee);
+		//Here we are forcing the transaction to be rolled back 
+		//by setting property wildfly.setrollbackonly()
+		try {
+			payrollService.enrollEmployee(employee);
+		}catch(ServiceUnavialableException e) {
+			wildfly.setRollbackOnly();
+			throw e;
+		}
+		
 	}
 
 	@Override

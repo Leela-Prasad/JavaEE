@@ -8,6 +8,13 @@ import com.virtualpairprogrammers.employeemanagement.domain.Employee;
 public class ExternalPayrollSystem {
 
 	public void enrollEmployee(Employee employee) throws ServiceUnavialableException {
-		throw new ServiceUnavialableException();
+		double random = Math.random();
+		if(random < 0.8) {
+			throw new ServiceUnavialableException();
+		}else {
+			//Do onboarding
+		}
+		
+		
 	}
 }
